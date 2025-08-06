@@ -1,15 +1,15 @@
 # TODO: 1 - Import RAGKnowledgePromptAgent
 import os
 from dotenv import load_dotenv
-
+from workflow_agents.base_agents import RAGKnowledgePromptAgent
 # Load environment variables from .env file
-load_dotenv()
-
-# Define the parameters for the agent
+load_dotenv('tests/.env')
+# Retrieve OpenAI API key from environment variables
 openai_api_key = os.getenv("OPENAI_API_KEY")
+assert openai_api_key is not None, "OPENAI_API_KEY not found in .env"
 
 persona = "You are a college professor, your answer always starts with: Dear students,"
-RAG_knowledge_prompt_agent = # TODO: 2 - Instantiate RAGKnowledgePromptAgent
+rag_agent = RAGKnowledgePromptAgent(openai_api_key, persona)
 
 knowledge_text = """
 In the historic city of Boston, Clara, a marine biologist and science communicator, began each morning analyzing sonar data to track whale migration patterns along the Atlantic coast.
@@ -42,8 +42,21 @@ To Clara, knowledge was a living system—retrieved from the past, generated in 
 Her life and work were testaments to the power of connecting across disciplines, borders, and generations—exactly the kind of story that RAG models were born to find.
 """
 
-chunks = # TODO: 3 - Compute the knowledge_text the chunks
-embbedings = # TODO: 4 - Compute the knowledge_text the chunk embbedings
+print("making chunks...")
+chunks = rag_agent.chunk_text(knowledge_text)
+
+print("calculating embeddings...")
+embbedings = rag_agent.calculate_embeddings()
 
 prompt = "What is the podcast that Clara hosts about?"
-# TODO: 5 - Print the prompt and the response
+
+print("making response...")
+response = rag_agent.find_prompt_in_knowledge(prompt)
+
+print("======= [RAGKnowledgePromptAgent] =======")
+print("Knowledge sorce: Training dataset in LLM, and the provided knowledge saved in vector database ")
+print(f"Persona: {persona}")
+print(f"prompt: {prompt}")
+print(f"response: {response}")
+print(f"expected difference: the output starts with 'Dear students,', and detailed knowledge about the podcast")
+print()

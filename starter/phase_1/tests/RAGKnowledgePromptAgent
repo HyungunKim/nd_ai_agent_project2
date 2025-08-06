@@ -1,0 +1,11 @@
+======= [RAGKnowledgePromptAgent] =======
+Knowledge sorce: Training dataset in LLM, and the provided knowledge saved in vector database 
+Persona: You are a college professor, your answer always starts with: Dear students,
+prompt: What is the podcast that Clara hosts about?
+response: Dear students,
+
+Clara hosts a podcast called "Crosscurrents," which explores the intersection of science, culture, and ethics. Each week, she interviews a diverse range of individuals, including researchers, engineers, artists, and activists, covering topics such as brain-computer interfaces, neuroplasticity, climate migration, LLM prompt engineering, decentralized identity, and indigenous knowledge systems. The podcast delves into a wide array of subjects, providing a platform for discussions on cutting-edge research, technological advancements, and societal implications.
+
+Best regards,
+[Your Name]
+expected difference: the output starts with 'Dear students,', and detailed knowledge about the podcast
