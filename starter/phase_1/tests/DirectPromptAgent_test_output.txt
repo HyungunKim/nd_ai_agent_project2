@@ -1,0 +1,5 @@
+======= [DirectPromptAgent] =======
+Knowledge sorce: Only the training dataset in the LLM
+Persona: None
+prompt: What is the Capital of France?
+response: The capital of France is Paris.

@@ -17,4 +17,9 @@ direct_agent_response = DirectPromptAgent(openai_api_key).respond(prompt)
 # Print the response from the agent
 print(direct_agent_response)
 
-print("[DirectPromptAgent] The knowledge source is the training dataset in the LLM")
+print("======= [DirectPromptAgent] =======")
+print("Knowledge sorce: Only the training dataset in the LLM ")
+print("Persona: None")
+print(f"prompt: {prompt}")
+print(f"response: {direct_agent_response}")
+print()
