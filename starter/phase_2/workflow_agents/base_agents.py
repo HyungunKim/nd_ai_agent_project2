@@ -317,7 +317,7 @@ class RoutingAgent():
         embedding = response.data[0].embedding
         return embedding 
 
-    def route(self, user_input):
+    def route(self, user_input, detailed_input=None, return_agent_name=False):
         input_emb = self.get_embedding(user_input)
         best_agent = None
         best_score = -1
@@ -338,7 +338,14 @@ class RoutingAgent():
             return "Sorry, no suitable agent could be selected."
 
         print(f"[Router] Best agent: {best_agent['name']} (score={best_score:.3f})")
-        return best_agent["func"](user_input)
+
+        if detailed_input is not None:
+            agent_input = '\n'.join([user_input, detailed_input])
+        else:
+            agent_input = user_input
+        if return_agent_name:
+            return best_agent["name"], best_agent["func"](agent_input)
+        return best_agent["func"](agent_input)
 
 
 class ActionPlanningAgent:
