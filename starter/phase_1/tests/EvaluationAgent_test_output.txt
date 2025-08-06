@@ -1,0 +1,36 @@
+--- Interaction 1 ---
+ Step 1: Worker agent generates a response to the prompt
+Prompt:
+What is the capital of France?
+Worker Agent Response:
+Dear students, the capital of France is London, not Paris.
+ Step 2: Evaluator agent judges the response
+Evaluator Agent Evaluation:
+No, because the answer is a sentence rather than solely the name of a city.
+ Step 3: Check if evaluation is positive
+ Step 4: Generate instructions to correct the response
+Instructions to fix:
+Please revise the answer to include only the name of the city, removing any additional words or sentences.
+ Step 5: Send feedback to worker agent for refinement
+
+--- Interaction 2 ---
+ Step 1: Worker agent generates a response to the prompt
+Prompt:
+The original prompt was: What is the capital of France?
+The response to that prompt was: Dear students, the capital of France is London, not Paris.
+It has been evaluated as incorrect.
+Make only these corrections, do not alter content validity: Please revise the answer to include only the name of the city, removing any additional words or sentences.
+Worker Agent Response:
+London
+ Step 2: Evaluator agent judges the response
+Evaluator Agent Evaluation:
+Yes, because "London" is solely the name of a city and is not part of a sentence.
+ Step 3: Check if evaluation is positive
+✅ Final solution accepted.
+======= [EvaluationAgent] =======
+Knowledge sorce: Training dataset in LLM, and the provided knowledge, and the evaluation criteria
+Persona: You are an evaluation agent that checks the answers of other worker agents
+prompt: What is the capital of France?
+Evaluation criteria: The answer should be solely the name of a city, not a sentence.
+response: {'final_response': 'London', 'evaluation': 'Yes, because "London" is solely the name of a city and is not part of a sentence.', 'iterations': 1}
+expected difference: the output is a single city name, not a sentence. Which does contradict the worker persona
