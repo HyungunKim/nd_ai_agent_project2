@@ -8,9 +8,6 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
-load_dotenv('tests/.env')
-API_KEY = os.getenv("OPENAI_API_KEY")
-assert API_KEY is not None, "OPENAI_API_KEY not found in .env"
 
 from enum import Enum
 
@@ -43,10 +40,6 @@ class DirectPromptAgent:
 
 # '''
 
-ans = DirectPromptAgent(API_KEY).respond(
-    "What is the capital of France?"
-)
-print("capital of France:", ans)
 
 '''
 # AugmentedPromptAgent class definition
