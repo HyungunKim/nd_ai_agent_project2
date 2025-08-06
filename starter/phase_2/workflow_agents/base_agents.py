@@ -54,7 +54,7 @@ class AugmentedPromptAgent:
                         api_key=self.openai_api_key)
 
         response = client.chat.completions.create(
-            model=MODEL.GPT_41_NANO,
+            model=MODEL,
             messages=[
                 {"role": "system", "content": f"You are {self.persona}. Forget previous context."},
                 {"role": "user", "content": input_text}
@@ -77,7 +77,7 @@ class KnowledgeAugmentedPromptAgent:
         client = OpenAI(base_url=BASE_URL,
                         api_key=self.openai_api_key)
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=MODEL,
             messages=[
                 {"role": "system", "content": f"You are {self.persona}. Forget previous context."},
                 {"role": "system", "content": f"Use only the following knowledge to answer, do not use your own knowledge: {self.knowledge}"},
@@ -217,7 +217,7 @@ class RAGKnowledgePromptAgent:
 
         client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=MODEL,
             messages=[
                 {"role": "system", "content": f"You are {self.persona}, a knowledge-based assistant. Forget previous context."},
                 {"role": "user", "content": f"Answer based only on this information: {best_chunk}. Prompt: {prompt}"}
@@ -259,7 +259,7 @@ class EvaluationAgent:
                 f"Respond Yes or No, and the reason why it does or doesn't meet the criteria."
             )
             response = client.chat.completions.create(
-                model=MODEL.GPT_41_NANO,
+                model=MODEL,
                 messages=[{"role": "system", "content": f"You are {self.persona}. Forget previous context."},
                           { "role": "user", "content": eval_prompt}],
                 temperature=0
@@ -277,7 +277,7 @@ class EvaluationAgent:
                     f"Provide instructions to fix an answer based on these reasons why it is incorrect: {evaluation}"
                 )
                 response = client.chat.completions.create(
-                    model=MODEL.GPT_41_NANO,
+                    model=MODEL,
                     messages = [{"role": "system", "content": f"You are {self.persona}. Forget previous context."},
                                {"role": "user", "content": instruction_prompt}],
                     temperature=0
@@ -354,8 +354,8 @@ class ActionPlanningAgent:
         # Provide the following system prompt along with the user's prompt:
         # "You are an action planning agent. Using your knowledge, you extract from the user prompt the steps requested to complete the action the user is asking for. You return the steps as a list. Only return the steps in your knowledge. Forget any previous context. This is your knowledge: {pass the knowledge here}"
         response = client.chat.completions.create(
-            model=MODEL.GPT_41_NANO,
-            messages=[{"role": "system", "content": f"You are an action planning agent. Using your knowledge, you extract from the user prompt the steps requested to complete the action the user is asking for. You return the steps as a list. Only return the steps in your knowledge. Forget any previous context. This is your knowledge: {self.knowledge}"},
+            model=MODEL,
+            messages=[{"role": "system", "content": f"You are an action planning agent. Using your knowledge, you extract from the user prompt the steps requested to complete the action the user is asking for. You return the steps as a list. Only return the steps in your knowledge and no comments or thoghts. Final step must be direct answer to the user prompt. Forget any previous context. This is your knowledge: {self.knowledge}"},
                       {"role": "user", "content": prompt}],
             temperature=0
         )

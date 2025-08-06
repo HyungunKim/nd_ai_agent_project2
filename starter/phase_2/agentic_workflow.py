@@ -129,17 +129,18 @@ print("\nDefining workflow steps from the workflow prompt")
 #   4. After the loop, print the final output of the workflow (the last completed step).
 
 action_planning_response = action_planning_agent.extract_steps_from_prompt(workflow_prompt)
-with open("action_planning_response.txt", "w", encoding="utf-8") as f:
+with open("output_sets/set1/action_planning_response.txt", "w", encoding="utf-8") as f:
     f.write(str(action_planning_response))
-
+if os.path.exists("output_sets/set1/routing_response.txt"):
+    os.remove("output_sets/set1/routing_response.txt")
 completed_steps = []
 for step in action_planning_response:
-    routing_response = routing_agent.route(step)
+    routing_response = routing_agent.route(f"{'\n'.join(completed_steps)} \n Step {step}: ")
     completed_steps.append(routing_response)
-    with open("routing_response.txt", "a", encoding="utf-8") as f:
-        f.write(f"Step {step} completed with result: {routing_response}")
+    with open("output_sets/set1/routing_response.txt", "a", encoding="utf-8") as f:
+        f.write(f"Step {step} completed with result:\n {routing_response}\n =====")
     print(f"Step {step} completed with result: {routing_response}")
 
 print(f"\nWorkflow completed. Final result: {completed_steps[-1]}")
-with open("final_result.txt", "w", encoding="utf-8") as f:
+with open("output_sets/set1/final_result.txt", "w", encoding="utf-8") as f:
     f.write(f"\nWorkflow completed. Final result: {completed_steps[-1]}")
