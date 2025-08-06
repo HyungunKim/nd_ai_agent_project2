@@ -1,0 +1,6 @@
+This is the output where all routing agent can take two inputs.
+One input is short description for the task to select the right worker agent.
+Second input is longer descrition of the task. This could include context of previous steps.
+The end result seems okay but (step3) had developer agent prematurely making task befure program manager can have a say.
+Fortunately the final step was handled by developer agent again with the compete context.
+

@@ -1,0 +1,3 @@
+This is the output where all the previous steps are fed into router agent input prompt.
+During this run there was a bug where development_engineer_evaluation_criteria was not used.
+Current output does not capture what agent handled the step.
