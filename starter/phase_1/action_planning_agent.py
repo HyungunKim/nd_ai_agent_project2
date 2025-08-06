@@ -1,6 +1,14 @@
 # TODO: 1 - Import all required libraries, including the ActionPlanningAgent
+import os
+from dotenv import load_dotenv
 
-# TODO: 2 - Load environment variables and define the openai_api_key variable with your OpenAI API key
+from starter.phase_1.workflow_agents.base_agents import ActionPlanningAgent
+
+# Load environment variables from .env file
+load_dotenv('tests/.env')
+# Retrieve OpenAI API key from environment variables
+openai_api_key = os.getenv("OPENAI_API_KEY")
+assert openai_api_key is not None, "OPENAI_API_KEY not found in .env"
 
 knowledge = """
 # Fried Egg
@@ -31,5 +39,14 @@ knowledge = """
 """
 
 # TODO: 3 - Instantiate the ActionPlanningAgent, passing the openai_api_key and the knowledge variable
+action_planning_agent = ActionPlanningAgent(openai_api_key, knowledge)
 
 # TODO: 4 - Print the agent's response to the following prompt: "One morning I wanted to have scrambled eggs"
+prompt = "One morning I wanted to have boiled eggs"
+response = action_planning_agent.extract_steps_from_prompt(prompt)
+
+print("======= [ActionPlanningAgent] =======")
+print("Knowledge sorce: Training dataset in LLM, and the provided knowledge ")
+print(f"prompt: {prompt}")
+print(f"response: {response}")
+print(f"expected difference: the output is a list of steps to take to achieve the desired outcome")
