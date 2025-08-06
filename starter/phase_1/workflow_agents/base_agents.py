@@ -1,32 +1,53 @@
-# TODO: 1 - import the OpenAI class from the openai library
 import numpy as np
 import pandas as pd
 import re
 import csv
 import uuid
 from datetime import datetime
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
-'''
+load_dotenv('tests/.env')
+API_KEY = os.getenv("OPENAI_API_KEY")
+assert API_KEY is not None, "OPENAI_API_KEY not found in .env"
+
+from enum import Enum
+
+class OpenAIModel(str, Enum):
+    GPT_41 = "gpt-4.1"  # Strong default choice for development tasks, particularly those requiring speed, responsiveness, and general-purpose reasoning.
+    GPT_41_MINI = "gpt-4.1-mini"  # Fast and affordable, good for brainstorming, drafting, and tasks that don't require the full power of GPT-4.1.
+    GPT_41_NANO = "gpt-4.1-nano"  # The fastest and cheapest model, suitable for lightweight tasks, high-frequency usage, and edge computing.
+
+MODEL = OpenAIModel.GPT_41_MINI  # Default model for this project
+
+# '''
 # DirectPromptAgent class definition
 class DirectPromptAgent:
-    
+
     def __init__(self, openai_api_key):
         # Initialize the agent
-        # TODO: 2 - Define an attribute named openai_api_key to store the OpenAI API key provided to this class.
-
+        self.openai_api_key = openai_api_key
     def respond(self, prompt):
         # Generate a response using the OpenAI API
-        client = OpenAI(api_key=self.openai_api_key)
+        client = OpenAI(base_url="https://openai.vocareum.com/v1",
+                        api_key=self.openai_api_key)
         response = client.chat.completions.create(
-            model=# TODO: 3 - Specify the model to use (gpt-3.5-turbo)
+            model= MODEL,
             messages=[
-                # TODO: 4 - Provide the user's prompt here. Do not add a system prompt.
+                {'role': 'user', 'content': prompt}
             ],
             temperature=0
         )
-        # TODO: 5 - Return only the textual content of the response (not the full JSON response).
-'''
-        
+        return response.choices[0].message.content
+
+# '''
+
+ans = DirectPromptAgent(API_KEY).respond(
+    "What is the capital of France?"
+)
+print("capital of France:", ans)
+
 '''
 # AugmentedPromptAgent class definition
 class AugmentedPromptAgent:
