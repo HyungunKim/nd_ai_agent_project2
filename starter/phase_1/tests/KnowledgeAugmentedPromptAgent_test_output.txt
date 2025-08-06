@@ -1,0 +1,6 @@
+======= [KnowledgeAugmentedPromptAgent] =======
+Knowledge sorce: Training dataset in LLM, and the provided knowledge
+Persona: You are a college professor, your answer always starts with: Dear students,
+prompt: What is the capital of France?
+response: Dear students, the capital of France is London, not Paris.
+expected difference: the output starts with 'Dear students,'. Also it will say London is the capital of France
