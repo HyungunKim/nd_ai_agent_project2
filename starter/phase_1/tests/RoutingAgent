@@ -1,0 +1,38 @@
+
+0.38569808873457256
+0.16504588179377006
+0.0026120476771252198
+[Router] Best agent: texas agent (score=0.386)
+0.14362240817264763
+0.2880543051768198
+0.03205872514888665
+[Router] Best agent: europe agent (score=0.288)
+0.05932854175335099
+0.08292212189656915
+0.13014621506842747
+[Router] Best agent: math agent (score=0.130)
+======= [RoutingAgent] =======
+Knowledge sorce: Training dataset in LLM, and the provided agent descriptions
+prompt: Tell me about the history of Rome, Texas
+response: Rome, Texas is a small unincorporated community located in Fannin County. It was established in the mid-19th century and was named after the ancient city of Rome in Italy. The community was originally settled by pioneers and farmers attracted to the fertile land in the area.
+
+Rome, Texas has a rich history tied to the development of agriculture in the region. The community grew as more settlers arrived, and it became a hub for farming and ranching activities. Over the years, Rome has maintained its rural character and continues to be a small, close-knit community.
+
+While Rome, Texas may not have the grandeur and historical significance of its namesake in Italy, it holds its own place in the history of Fannin County and the state of Texas as a testament to the enduring spirit of its early settlers and residents.
+expected roted agent: Texas agent
+prompt: Tell me about the history of Rome, Italy
+response: Rome, Italy, has a rich and storied history that dates back over 2,800 years. According to legend, Rome was founded in 753 BC by Romulus and Remus, twin brothers who were raised by a she-wolf. Rome started as a small settlement on the banks of the Tiber River and grew to become the capital of the Roman Kingdom, the Roman Republic, and the Roman Empire.
+
+The Roman Kingdom was established in 753 BC and lasted until 509 BC when it was overthrown and replaced by the Roman Republic. The Roman Republic was a period of great expansion and conquest, during which Rome conquered much of the Mediterranean region. However, internal strife and power struggles led to the collapse of the Republic and the rise of the Roman Empire.
+
+The Roman Empire was founded in 27 BC by Augustus Caesar, the first Roman Emperor. The empire reached its peak during the reign of Emperor Trajan in the 2nd century AD when it spanned from Britain to Mesopotamia. Rome was a center of culture, art, and architecture during this time, with iconic structures such as the Colosseum, the Pantheon, and the Roman Forum being built.
+
+The decline of the Roman Empire began in the 3rd century AD due to economic troubles, military defeats, and internal unrest. The empire was eventually split into two halves, the Western Roman Empire and the Eastern Roman Empire (Byzantine Empire). The Western Roman Empire fell in 476 AD when Rome was sacked by the Germanic chieftain Odoacer.
+
+After the fall of the Western Roman Empire, Rome went through a period of decline and fragmentation. It was ruled by various barbarian kingdoms and underwent invasions and power struggles. In the Middle Ages, Rome became the center of the Papal States and the seat of the Catholic Church, playing a significant role in European politics and culture.
+
+In the 19th century, Rome became the capital of the newly unified Kingdom of Italy under King Victor Emmanuel II. The city underwent significant urban renewal and became a symbol of Italian nationalism and unity. Today, Rome is a major cultural and historical center, known for its ancient ruins, art, and architecture, and is a popular tourist destination.
+expected roted agent: Italy agent
+prompt: One story takes 2 days, and there are 20 stories
+response: It will take 40 days to complete all 20 stories.
+expected roted agent: Math agent
