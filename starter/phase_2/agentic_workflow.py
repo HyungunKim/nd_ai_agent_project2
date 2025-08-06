@@ -15,7 +15,7 @@ with open("Product-Spec-Email-Router.txt", 'r', encoding="utf-8") as f:
     
 assert product_spec is not None, "Product spec not found"
 # Instantiate all the agents
-
+MAX_INTERACTIONS = 30
 # Action Planning Agent
 knowledge_action_planning = (
     "Stories are defined from a product spec by identifying a "
@@ -43,7 +43,7 @@ product_manager_knowledge_agent = KnowledgeAugmentedPromptAgent(OPEN_API_KEY, pe
 persona_product_manager_eval = "You are an evaluation agent that checks the answers of product_manager_knowledge_agent."
 evaluation_criteria = "The answer should provide user stories that follow the structure: 'As a [type of user], I want [an action or feature] so that [benefit/value]'. Each story should clearly identify the user persona, define a specific action or feature they desire, and explain the intended benefit or value."
 product_manager_evaluation_agent = EvaluationAgent(OPEN_API_KEY, persona_product_manager_eval, evaluation_criteria,
-                                                   product_manager_knowledge_agent, max_interactions=20)
+                                                   product_manager_knowledge_agent, max_interactions=MAX_INTERACTIONS)
 # Program Manager - Knowledge Augmented Prompt Agent
 persona_program_manager = "You are a Program Manager, you are responsible for defining the features for a product."
 knowledge_program_manager = "Features of a product are defined by organizing similar user stories into cohesive groups."
@@ -58,7 +58,7 @@ program_manager_eval_criteria = "The answer should be product features that foll
     "Description: A brief explanation of what the feature does and its purpose\n" \
     "Key Functionality: The specific capabilities or actions the feature provides\n" \
     "User Benefit: How this feature creates value for the user"
-program_manager_evaluation_agent = EvaluationAgent(OPEN_API_KEY, persona_program_manager_eval, program_manager_eval_criteria, program_manager_knowledge_agent, max_interactions=20)
+program_manager_evaluation_agent = EvaluationAgent(OPEN_API_KEY, persona_program_manager_eval, program_manager_eval_criteria, program_manager_knowledge_agent, max_interactions=MAX_INTERACTIONS)
 
 # Development Engineer - Knowledge Augmented Prompt Agent
 persona_dev_engineer = "You are a Development Engineer, you are responsible for defining the development tasks for a product."
@@ -79,7 +79,7 @@ development_engineer_evaluation_criteria = "The answer should be tasks following
     "Estimated Effort: Time or complexity estimation\n" \
     "Dependencies: Any tasks that must be completed first"
 
-development_engineer_evaluation_agent = EvaluationAgent(OPEN_API_KEY, persona_dev_engineer_eval, evaluation_criteria, development_engineer_knowledge_agent, max_interactions=20)
+development_engineer_evaluation_agent = EvaluationAgent(OPEN_API_KEY, persona_dev_engineer_eval, evaluation_criteria, development_engineer_knowledge_agent, max_interactions=MAX_INTERACTIONS)
 
 # Routing Agent
 
@@ -137,7 +137,9 @@ for step in action_planning_response:
     routing_response = routing_agent.route(step)
     completed_steps.append(routing_response)
     with open("routing_response.txt", "a", encoding="utf-8") as f:
-        f.write(str(routing_response))
+        f.write(f"Step {step} completed with result: {routing_response}")
     print(f"Step {step} completed with result: {routing_response}")
 
 print(f"\nWorkflow completed. Final result: {completed_steps[-1]}")
+with open("final_result.txt", "w", encoding="utf-8") as f:
+    f.write(f"\nWorkflow completed. Final result: {completed_steps[-1]}")
