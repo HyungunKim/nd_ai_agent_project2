@@ -24,7 +24,7 @@ Worker Agent Response:
 London
  Step 2: Evaluator agent judges the response
 Evaluator Agent Evaluation:
-Yes, because "London" is solely the name of a city and is not part of a sentence.
+Yes, because "London" is solely the name of a city and does not contain any additional words or sentences.
  Step 3: Check if evaluation is positive
 ✅ Final solution accepted.
 ======= [EvaluationAgent] =======
@@ -32,5 +32,5 @@ Knowledge sorce: Training dataset in LLM, and the provided knowledge, and the ev
 Persona: You are an evaluation agent that checks the answers of other worker agents
 prompt: What is the capital of France?
 Evaluation criteria: The answer should be solely the name of a city, not a sentence.
-response: {'final_response': 'London', 'evaluation': 'Yes, because "London" is solely the name of a city and is not part of a sentence.', 'iterations': 1}
+response: {'final_response': 'London', 'evaluation': 'Yes, because "London" is solely the name of a city and does not contain any additional words or sentences.', 'iterations': 1}
 expected difference: the output is a single city name, not a sentence. Which does contradict the worker persona
