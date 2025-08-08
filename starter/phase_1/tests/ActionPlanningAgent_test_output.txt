@@ -7,5 +7,5 @@ expected difference: the output is a list of steps to take to achieve the desire
 ======= [ActionPlanningAgent] =======
 Knowledge sorce: Training dataset in LLM, and the provided knowledge
 prompt: One morning I wanted to have boiled eggs
-response: ['1. Place eggs in a pot', '2. Cover with cold water (about 1 inch above eggs)', '3. Bring water to a boil', '4. Remove from heat and cover pot', '5. Let sit: 4-6 minutes for soft-boiled or 10-12 minutes for hard-boiled', '6. Transfer eggs to ice water to stop cooking', '7. Peel and serve']
+response: ['1. Place eggs in a pot', '2. Cover with cold water (about 1 inch above eggs)', '3. Bring water to a boil', '4. Remove from heat and cover the pot', '5. Let sit: 4-6 minutes for soft-boiled or 10-12 minutes for hard-boiled', '6. Transfer eggs to ice water to stop cooking', '7. Peel and serve']
 expected difference: the output is a list of steps to take to achieve the desired outcome
