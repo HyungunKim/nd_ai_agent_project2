@@ -1,5 +1,4 @@
 
-# TODO: 1 - Import the KnowledgeAugmentedPromptAgent and RoutingAgent
 import os
 from dotenv import load_dotenv
 
@@ -15,16 +14,13 @@ assert openai_api_key is not None, "OPENAI_API_KEY not found in .env"
 persona = "You are a college professor"
 
 knowledge = "You know everything about Texas"
-# TODO: 2 - Define the Texas Knowledge Augmented Prompt Agent
 texas_agent = KnowledgeAugmentedPromptAgent(openai_api_key, persona, knowledge)
 
 knowledge = "You know everything about Europe"
-# TODO: 3 - Define the Europe Knowledge Augmented Prompt Agent
 europe_agent = KnowledgeAugmentedPromptAgent(openai_api_key, persona, knowledge)
 
 persona = "You are a college math professor"
 knowledge = "You know everything about math, you take prompts with numbers, extract math formulas, and show the answer without explanation"
-# TODO: 4 - Define the Math Knowledge Augmented Prompt Agent
 math_agent = KnowledgeAugmentedPromptAgent(openai_api_key, persona, knowledge)
 
 routing_agent = RoutingAgent(openai_api_key, {})
@@ -48,10 +44,6 @@ agents = [
 
 routing_agent.agents = agents
 
-# TODO: 8 - Print the RoutingAgent responses to the following prompts:
-#           - "Tell me about the history of Rome, Texas"
-#           - "Tell me about the history of Rome, Italy"
-#           - "One story takes 2 days, and there are 20 stories"
 prompt1 = "Tell me about the history of Rome, Texas"
 prompt2 = "Tell me about the history of Rome, Italy"
 prompt3 = "One story takes 2 days, and there are 20 stories"

@@ -1,4 +1,3 @@
-# TODO: 1 - Import EvaluationAgent and KnowledgeAugmentedPromptAgent classes
 import os
 from dotenv import load_dotenv
 

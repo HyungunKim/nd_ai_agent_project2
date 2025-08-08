@@ -119,14 +119,6 @@ workflow_prompt = "What would the development tasks for this product be?"
 print(f"Task to complete in this workflow, workflow prompt = {workflow_prompt}")
 
 print("\nDefining workflow steps from the workflow prompt")
-# TODO: 12 - Implement the workflow.
-#   1. Use the 'action_planning_agent' to extract steps from the 'workflow_prompt'.
-#   2. Initialize an empty list to store 'completed_steps'.
-#   3. Loop through the extracted workflow steps:
-#      a. For each step, use the 'routing_agent' to route the step to the appropriate support function.
-#      b. Append the result to 'completed_steps'.
-#      c. Print information about the step being executed and its result.
-#   4. After the loop, print the final output of the workflow (the last completed step).
 
 action_planning_response = action_planning_agent.extract_steps_from_prompt(workflow_prompt)
 with open("action_planning_response.txt", "w", encoding="utf-8") as f:

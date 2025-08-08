@@ -1,4 +1,3 @@
-# TODO: 1 - Import RAGKnowledgePromptAgent
 import os
 from dotenv import load_dotenv
 from workflow_agents.base_agents import RAGKnowledgePromptAgent
