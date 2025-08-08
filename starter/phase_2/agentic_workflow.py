@@ -28,6 +28,21 @@ knowledge_action_planning = (
     "A development Plan for a product contains all these components"
 )
 action_planning_agent = ActionPlanningAgent(OPEN_API_KEY, knowledge_action_planning)
+
+# Action Planning Agent - Evaluation evaluator
+def action_planning_agent_evaluator(response):
+    """A simple rule based evaluator for the action planning agent."""
+    n_steps = len(response)
+    evalation = ""
+    for i in range(1, n_steps + 1):
+        if not response[i-1].startswith(f"{i}."):
+            evalation += f'Step {i} does not start with step number "{i}."\n'
+    if len(evalation) > 0:
+        return "Failed. Here is the evaluation: \n" + evalation + "Remember. You must only return steps starting with step number. No other texts ara allowed."
+    else:
+        return "Passed"
+    return evalation
+
 # Product Manager - Knowledge Augmented Prompt Agent
 persona_product_manager = "You are a Product Manager, you are responsible for defining the user stories for a product."
 knowledge_product_manager = (
@@ -94,6 +109,25 @@ routing_agent = RoutingAgent(OPEN_API_KEY, [
      "description": "Responsible for defining development tasks only. Does not define product personas or features.",
      "func": lambda x: development_engineer_support_function(x)}
 ])
+# Action planning agent support functions
+def action_planning_support_function(query, max_retry=30):
+    response = action_planning_agent.extract_steps_from_prompt(query)
+    evaluated_response = action_planning_agent_evaluator(response)
+    if evaluated_response.startswith("Passed") and len(response) > 1:
+        print(f"Action planning agent successfully extracted steps for the query: {query}")
+        return response
+    else:
+        if max_retry > 0:
+            print(f"Action planning agent failed to extract steps for the query: {query}. Retrying...")
+            query = f"Previous response: '{response}' failed evaluation. \
+                    \nHere is the eval result: {evaluated_response}.\
+                     \nPlease retry again to extract the steps for the query: {query}"
+            return action_planning_support_function(query, max_retry - 1)
+        else:
+            raise Exception("Action planning agent failed to extract steps for the query.")
+
+    return response
+
 # Job function persona support functions
 def product_manager_support_function(query):
     response = product_manager_knowledge_agent.respond(query)
