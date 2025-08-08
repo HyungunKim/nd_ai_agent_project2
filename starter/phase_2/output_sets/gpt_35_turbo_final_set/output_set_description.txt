@@ -1,0 +1,4 @@
+[2025-08-08 23:56]
+This is the final output for the second submission.
+Trial and error was needed as gpt-3.5-turbo was not as strong as gpt-4.1-mini.
+By checking and filtering the steps of the action_planning_agent the overall workflow ran pretty well.
