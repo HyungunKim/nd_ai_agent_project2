@@ -363,6 +363,9 @@ class ActionPlanningAgent:
         response_text = response.choices[0].message.content
         response_text = response_text.strip()
 
-        steps = response_text.split("\n")
+        # filter out empty strings
+        steps = [step for step in response_text.split("\n") if len(step) > 0]
+        # filter out non step element
+        steps = [step for i, step in enumerate(steps) if step.startswith(f'{i + 1}.')]
 
         return steps
