@@ -15,8 +15,9 @@ class OpenAIModel(str, Enum):
     GPT_41 = "gpt-4.1"  # Strong default choice for development tasks, particularly those requiring speed, responsiveness, and general-purpose reasoning.
     GPT_41_MINI = "gpt-4.1-mini"  # Fast and affordable, good for brainstorming, drafting, and tasks that don't require the full power of GPT-4.1.
     GPT_41_NANO = "gpt-4.1-nano"  # The fastest and cheapest model, suitable for lightweight tasks, high-frequency usage, and edge computing.
+    GPT_35_TURBO = "gpt-3.5-turbo"
 
-MODEL = OpenAIModel.GPT_41_MINI  # Default model for this project
+MODEL = OpenAIModel.GPT_35_TURBO  # Default model for this project
 BASE_URL = "https://openai.vocareum.com/v1"
 # '''
 # DirectPromptAgent class definition
